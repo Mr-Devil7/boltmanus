@@ -3,14 +3,54 @@
 @tailwind utilities;
 
 :root {
-  --primary: #2D6A4F;
-  --secondary: #936639;
-  --accent: #A7C957;
-  --background: #FAF9F6;
-  --text: #2C2C2C;
+  --primary: #2D6A4F; /* Forest Green */
+  --secondary: #936639; /* Soil Brown */
+  --accent: #A7C957; /* Leafy Light Green */
+  --background: #FAF9F6; /* Off-White */
+  --text: #2C2C2C; /* Charcoal */
 }
 
 body {
-  background-color: var(--background);
-  color: var(--text);
+  margin: 0;
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
+    'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
+    sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+code {
+  font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
+    monospace;
+}
+
+/* Animation for language popup */
+@keyframes pop-up {
+  from {
+    opacity: 0;
+    transform: scale(0.95) translateY(-10px);
+  }
+  to {
+    opacity: 1;
+    transform: scale(1) translateY(0);
+  }
+}
+
+.animate-pop-up {
+  animation: pop-up 0.3s ease-out forwards;
+}
+
+@keyframes pop-down {
+  from {
+    opacity: 1;
+    transform: scale(1) translateY(0);
+  }
+  to {
+    opacity: 0;
+    transform: scale(0.95) translateY(-10px);
+  }
+}
+
+.animate-pop-down {
+  animation: pop-down 0.3s ease-in forwards;
 }
