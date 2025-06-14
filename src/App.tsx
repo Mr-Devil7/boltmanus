@@ -13,7 +13,7 @@ import Services from './components/Services';
 import Cart from './components/Cart';
 import LanguagePopup from './components/LanguagePopup';
 import { LanguageProvider } from './context/LanguageContext';
-import { CartProvider } from './hooks/useCart';
+import { products } from './data/products';
 
 // Simple Error Boundary Component
 interface ErrorBoundaryProps {
@@ -38,8 +38,8 @@ class ErrorBoundary extends React.Component<ErrorBoundaryProps, ErrorBoundarySta
   render() {
     if (this.state.hasError) {
       return (
-        <div className="min-h-screen bg-[var(--background)] flex items-center justify-center">
-          <h1 className="text-3xl font-bold text-[var(--text)]">
+        <div className="min-h-screen bg-white flex items-center justify-center">
+          <h1 className="text-3xl font-bold text-gray-800">
             Something went wrong. Please check the console for details.
           </h1>
         </div>
@@ -71,10 +71,9 @@ function App() {
           <>
             <Hero onNavigate={handleNavigate} />
             <About />
-            <Offerings onNavigate={handleNavigate} />
+            <Offerings products={products} />
             <Mission />
             <Testimonials />
-            {/* Removed <Contact /> from the home section */}
           </>
         );
     }
@@ -82,17 +81,15 @@ function App() {
 
   return (
     <LanguageProvider>
-      <CartProvider>
-        <ErrorBoundary>
-          <div className="min-h-screen bg-[var(--background)]">
-            <Header currentSection={currentSection} onNavigate={handleNavigate} />
-            <main>{renderContent()}</main>
-            <Footer onNavigate={handleNavigate} />
-            <Cart />
-            <LanguagePopup />
-          </div>
-        </ErrorBoundary>
-      </CartProvider>
+      <ErrorBoundary>
+        <div className="min-h-screen bg-white">
+          <Header currentSection={currentSection} onNavigate={handleNavigate} />
+          <main>{renderContent()}</main>
+          <Footer />
+          <Cart />
+          <LanguagePopup />
+        </div>
+      </ErrorBoundary>
     </LanguageProvider>
   );
 }
